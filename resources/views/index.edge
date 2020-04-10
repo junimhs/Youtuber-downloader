@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Youtube Downloader - MP4</title>
+    <!-- Styles -->
+    {{ style('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}
+    {{ style('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css') }}
+    {{ style('style') }}
+    <!-- Styles -->
+  </head>
+  <body>
+    <!-- Nabvar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link text-light" href="{{ route('/') }}">Youtube downloader <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{{route('/')}}">Download Mp4</a>
+        </li>
+        <div class="dropdown-divider"></div>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{{route('/mp3')}}">Download Mp3</a>
+        </li>
+      </ul>
+
+    </nav>
+    <!-- Nabvar -->
+    <!-- Container -->
+      <div class="container p-5 cp-total">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6">
+            <!-- Titulo -->
+            <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+              <h1 class="display-4">Dowload MP4</h1>
+              <p class="lead">Para fazer download do video basta colocar o link do video do youtube abaixo no formulario pesquisar e fazer download</p>
+            </div>
+             <!-- Titulo -->
+            <!-- Notification -->
+            @if(flashMessage('notification_message'))
+              <div class="alert {{ flashMessage('notification_class') }}" role="alert">
+                <i class="fa {{ flashMessage('notification_icon') }}"></i> {{{ flashMessage('notification_message') }}}
+              </div>
+            @endif
+            <!-- End : Notification -->
+            <!-- Form -->
+            <form action="{{ route('search') }}" method="POST">
+              {{ csrfField() }}
+              <div class="input-group mb-3">
+                <input type="text" name="link" class="form-control" placeholder="Coloque o link do youtube" value="{{ link }}">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search"></i> Procurar
+                  </button>
+                </div>
+              </div>
+            </form>
+            <!-- End : Form -->
+            <!-- Video -->
+            @if(link != '')
+              <form action="{{ route('download') }}" method="POST">
+                {{ csrfField() }}
+                <input type="hidden" name="link" value="https://www.youtube.com/watch?v={{video.id}}">
+                <input type="hidden" name="title" value="{{video.title}}">
+                <div class="card">
+                  <img class="card-img-top" src="{{ video.thumb }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ video.title }}</h5>
+                    <p class="card-text">{{ video.description }}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Autor:</strong> {{video.author}}</li>
+                    <li class="list-group-item"><strong>Visualização:</strong> {{video.view}}</li>
+                    <li class="list-group-item"><strong>Tempo:</strong> {{video.time}}</li>
+                    <li class="list-group-item">
+                      <button class="btn btn-primary mt-4 float-right">
+                        <i class="fa fa-download"></i> Baixar mp4
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            @endif
+            <!-- End : Video -->
+          </div>
+        </div>
+      </div>
+    <!-- Container -->
+    <!-- Fotter -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">
+        <a href="https://github.com/junimhs"> By: Luis Henrique</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Fotter -->
+
+  </body>
+</html>
