@@ -42,6 +42,7 @@ Tecnologias usada para desenvolver o projeto:
 -  [Adonis](https://adonisjs.com/)
 -  [Node-YTDL](https://github.com/fent/node-ytdl-core)
 -  [VS Code][vc]
+-  [Bootstrap](https://getbootstrap.com/)
 
 ## :youtube-downloder: Informações de como usar
 
@@ -67,7 +68,7 @@ $ yarn install
 $ adonis serve --dev 
 ```
 
-♥ by Luis Henrique :wave: [Get in touch!](https://www.linkedin.com/in/luis-henrique-da-silva-melo-junior-416579155/)
+♥ by Luis Henrique :wave: [Entrar em contato](https://www.linkedin.com/in/luis-henrique-da-silva-melo-junior-416579155/)
 
 [nodejs]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
